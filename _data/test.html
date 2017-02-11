@@ -1,0 +1,22 @@
+<div class="collection" id="project">
+  <div>
+    <h2>Projects</h2>
+  </div>
+  <div class="underline_divider"></div>  
+
+  {% for project in site.data.projects %}
+  
+    <div class="item">
+      <div class="image">
+        <img class="image img-responsive" src='{{ project.imagesource }}'>
+      </div>
+      <h3><a href="{{ project.link}} ">{{ project.projectname }}</a></h3>
+      <p>
+        {% unless project.website == nil %}
+          {{ member.bio | replace_first: member.firstname, linkedName | remove: '<p>' | remove: '</p>' }}
+        {% else %}
+          {{ member.bio | remove: '<p>' | remove: '</p>' }}
+        {% endunless %}
+      </p>
+    </div>
+  {% endfor %}
